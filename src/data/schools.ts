@@ -227,7 +227,7 @@ export const ownSchools: School[] = [
     name: "Al-Kitab Higher Secondary School",
     location: "Rana Town, Lahore",
     shortDescription: "Free education for over 1,100 students from underserved families.",
-    cardImage: "/img/campaigns-opt/img_causes_alkitab4.webp",
+    cardImage: "/img/HEADERBG/03-aerial-alkitab-campus.png",
     description:
       "Al-Kitab Higher Secondary School is a flagship campus of Al-Kitab Education System under Helpline Welfare Trust. The school provides completely free education to more than 1,100 students and focuses on academic growth, character building, and long-term social uplift.",
     historyTitle: "History",

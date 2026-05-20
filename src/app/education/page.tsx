@@ -88,7 +88,7 @@ export default function EducationPage() {
           >
             These campuses are operated directly by Al-Kitab Education System under Helpline Welfare Trust.
           </motion.p>
-          <div className="grid gap-8 md:grid-cols-2">
+          <div className="grid gap-8 md:grid-cols-3">
             {ownSchools.map((school, i) => (
               <motion.div
                 key={school.slug}
