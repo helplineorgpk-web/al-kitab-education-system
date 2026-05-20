@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import ImagePlaceholder from "@/components/ImagePlaceholder";
+import SchoolCoverImage from "@/components/SchoolCoverImage";
 import { adoptedSchools, ownSchools, schoolStats } from "@/data/schools";
 
 export default function EducationPage() {
@@ -98,7 +98,7 @@ export default function EducationPage() {
                 transition={{ delay: i * 0.1 }}
                 className="rounded-2xl overflow-hidden border border-amber-200 bg-white shadow-sm"
               >
-                <ImagePlaceholder label={`${school.name} image placeholder`} aspectRatio="video" className="w-full" />
+                <SchoolCoverImage school={school} placeholderLabel={`${school.name} image placeholder`} />
                 <div className="p-6">
                   <span className="inline-block rounded-full bg-teal-100 px-3 py-1 text-xs font-medium text-teal-700">
                     Own School

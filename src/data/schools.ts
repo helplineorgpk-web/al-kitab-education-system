@@ -31,6 +31,7 @@ export const defaultTopResults: TopResult[] = [
     totalMarks: "1100",
     position: "1st Position",
     year: "2025",
+    image: "/img/causes/DSC_0290.JPG",
   },
   {
     name: "Star Student",
@@ -39,6 +40,7 @@ export const defaultTopResults: TopResult[] = [
     totalMarks: "1100",
     position: "2nd Position",
     year: "2025",
+    image: "/img/causes/cause13.jpg",
   },
   {
     name: "Distinction Holder",
@@ -47,6 +49,7 @@ export const defaultTopResults: TopResult[] = [
     totalMarks: "1100",
     position: "3rd Position",
     year: "2025",
+    image: "/img/causes/cause15.jpg",
   },
   {
     name: "Top Achiever",
@@ -55,6 +58,7 @@ export const defaultTopResults: TopResult[] = [
     totalMarks: "550",
     position: "1st Position",
     year: "2025",
+    image: "/img/causes/cause14.jpg",
   },
   {
     name: "Star Student",
@@ -63,6 +67,7 @@ export const defaultTopResults: TopResult[] = [
     totalMarks: "550",
     position: "2nd Position",
     year: "2025",
+    image: "/img/causes/cause16.jpg",
   },
   {
     name: "Distinction Holder",
@@ -71,6 +76,53 @@ export const defaultTopResults: TopResult[] = [
     totalMarks: "550",
     position: "3rd Position",
     year: "2025",
+    image: "/img/causes/DSC_0172.JPG",
+  },
+];
+
+/** Images for the six core events shown on the homepage. */
+export const homepageAnnualEvents: AnnualEvent[] = [
+  {
+    name: "Annual Sports Gala",
+    description: "Athletics, races, and team games building school spirit.",
+    tag: "Sports",
+    date: "Annual",
+    image: "/img/causes/begin.JPG",
+  },
+  {
+    name: "Parent Teacher Meeting",
+    description: "Open dialogue between parents and teachers on student progress.",
+    tag: "Academic",
+    date: "Quarterly",
+    image: "/img/causes/DSC_0172.JPG",
+  },
+  {
+    name: "Teacher Day",
+    description: "A heartwarming tribute to the teachers who shape futures.",
+    tag: "Celebration",
+    date: "October",
+    image: "/img/causes/cause16.jpg",
+  },
+  {
+    name: "Watermelon Day",
+    description: "Joyful summer celebration with students and teachers together.",
+    tag: "Fun Day",
+    date: "Summer",
+    image: "/img/causes/alkitab4.jpg",
+  },
+  {
+    name: "Mango Day",
+    description: "A favorite seasonal day full of mangoes, smiles, and memories.",
+    tag: "Fun Day",
+    date: "Mango Season",
+    image: "/img/causes/cause17.jpg",
+  },
+  {
+    name: "Test Reports & Result Day",
+    description: "Detailed academic feedback and progress sharing with families.",
+    tag: "Academic",
+    date: "Term Wise",
+    image: "/img/causes/DSC_0290.JPG",
   },
 ];
 
@@ -81,6 +133,7 @@ export const defaultAnnualEvents: AnnualEvent[] = [
       "A full day of athletics, races, tug-of-war, and team competitions to build teamwork, fitness, and school spirit.",
     tag: "Sports",
     date: "Annual",
+    image: "/img/causes/begin.JPG",
   },
   {
     name: "Parent Teacher Meeting (PTM)",
@@ -88,6 +141,7 @@ export const defaultAnnualEvents: AnnualEvent[] = [
       "A structured session where parents meet teachers, review student progress, and align on academic and personal growth goals.",
     tag: "Academic",
     date: "Quarterly",
+    image: "/img/causes/DSC_0172.JPG",
   },
   {
     name: "Teacher Day",
@@ -95,6 +149,7 @@ export const defaultAnnualEvents: AnnualEvent[] = [
       "A heartwarming celebration honoring teachers for their dedication, with student-led tributes, performances, and gifts.",
     tag: "Celebration",
     date: "October",
+    image: "/img/causes/cause16.jpg",
   },
   {
     name: "Watermelon Day",
@@ -102,6 +157,7 @@ export const defaultAnnualEvents: AnnualEvent[] = [
       "A summer fun day where students enjoy fresh watermelon together, creating joyful memories and a sense of togetherness.",
     tag: "Fun Day",
     date: "Summer",
+    image: "/img/causes/alkitab4.jpg",
   },
   {
     name: "Mango Day",
@@ -109,6 +165,7 @@ export const defaultAnnualEvents: AnnualEvent[] = [
       "A favorite seasonal celebration filled with mangoes, smiles, and bonding activities among students and teachers.",
     tag: "Fun Day",
     date: "Mango Season",
+    image: "/img/causes/cause17.jpg",
   },
   {
     name: "Test Reports & Result Day",
@@ -116,6 +173,7 @@ export const defaultAnnualEvents: AnnualEvent[] = [
       "Detailed examination report distribution with parent-teacher discussions, student feedback, and academic progress reviews.",
     tag: "Academic",
     date: "Term Wise",
+    image: "/img/causes/DSC_0290.JPG",
   },
   {
     name: "Independence Day Celebration",
@@ -123,6 +181,7 @@ export const defaultAnnualEvents: AnnualEvent[] = [
       "National pride event with flag hoisting, speeches, tableaus, national songs, and patriotic activities for students.",
     tag: "National",
     date: "August 14",
+    image: "/img/causes/chani5.jpg",
   },
   {
     name: "Quiz & Speech Competition",
@@ -130,6 +189,7 @@ export const defaultAnnualEvents: AnnualEvent[] = [
       "Inter-class competitions encouraging confidence, public speaking, knowledge, and healthy academic competition.",
     tag: "Academic",
     date: "Annual",
+    image: "/img/causes/begin1.JPG",
   },
 ];
 
@@ -153,6 +213,10 @@ export interface School {
   level?: string;
   topResults?: TopResult[];
   annualEvents?: AnnualEvent[];
+  /** Used on listing cards (e.g. Education page, home featured schools) */
+  cardImage?: string;
+  /** Photo gallery on the school detail page */
+  galleryImages?: string[];
 }
 
 export const ownSchools: School[] = [
@@ -163,6 +227,7 @@ export const ownSchools: School[] = [
     name: "Al-Kitab Higher Secondary School",
     location: "Rana Town, Lahore",
     shortDescription: "Free education for over 1,100 students from underserved families.",
+    cardImage: "/img/campaigns-opt/img_causes_alkitab4.webp",
     description:
       "Al-Kitab Higher Secondary School is a flagship campus of Al-Kitab Education System under Helpline Welfare Trust. The school provides completely free education to more than 1,100 students and focuses on academic growth, character building, and long-term social uplift.",
     historyTitle: "History",
@@ -175,6 +240,16 @@ export const ownSchools: School[] = [
     futureText:
       "The next phase is to build additional floors and stronger facilities so no deserving child is left out.",
     imageSlots: 8,
+    galleryImages: [
+      "/img/causes/DJI_0010.JPG",
+      "/img/causes/DJI_0018.JPG",
+      "/img/causes/history.jpg",
+      "/img/causes/history.png",
+      "/img/causes/upgraded.png",
+      "/img/causes/upgraded1.JPG",
+      "/img/causes/future.jpg",
+      "/img/causes/future1.jpg",
+    ],
     founded: "2015",
     level: "Higher Secondary",
     stats: [
@@ -191,6 +266,7 @@ export const ownSchools: School[] = [
     name: "Irtaqa-e-Itfal High School",
     location: "Manawan, Lahore",
     shortDescription: "A holistic school model with education, health support, and family care.",
+    cardImage: "/img/HEADERBG/07-irtiqa-itfal-school.png",
     description:
       "Irtaqa-e-Itfal High School serves over 1,000 students with free education and welfare support. Helpline Welfare Trust supports families through uniforms, books, health checkups, and community-focused initiatives.",
     historyTitle: "Holistic Approach",
@@ -218,6 +294,7 @@ export const ownSchools: School[] = [
     name: "Al-Kitab School Rajanpur (Gullowali)",
     location: "Rajanpur (Gullowali)",
     shortDescription: "An under-construction school for a highly underserved area.",
+    cardImage: "/img/HEADERBG/06-university-rajanpur.png",
     description:
       "This project is being developed to provide quality, accessible education in a region with very limited school availability. Most enrolled children will study free of cost through Helpline Welfare Trust support.",
     historyTitle: "Under Construction",
@@ -245,6 +322,7 @@ export const ownSchools: School[] = [
     name: "Ch Rehmat Ali Higher Secondary School for Boys",
     location: "Gojra",
     shortDescription: "Boys higher secondary campus focused on quality and opportunity.",
+    cardImage: "/img/campaigns-opt/img_causes_chrehmat1.webp",
     description:
       "This campus in the Al-Kitab Education System supports boys from low-income communities through free and affordable quality schooling, trained teachers, and learning facilities.",
     historyTitle: "Community Impact",
@@ -272,6 +350,7 @@ export const ownSchools: School[] = [
     name: "Iman Maryam Girls Higher Secondary School",
     location: "Aligarh Educational Complex, Gojra",
     shortDescription: "Girls-focused higher secondary education with transport support.",
+    cardImage: "/img/campaigns-opt/img_causes_imanmaryam.webp",
     description:
       "Iman Maryam Girls Higher Secondary School provides free quality education and transport assistance to help girls continue their studies without financial barriers.",
     historyTitle: "A Vision Rooted in Empowerment",
@@ -300,6 +379,7 @@ export const ownSchools: School[] = [
     name: "Emman Maryam Smart School",
     location: "Aligarh Educational Complex, Gojra",
     shortDescription: "Primary-level smart learning environment for early education.",
+    cardImage: "/img/campaigns-opt/img_causes_smart2.webp",
     description:
       "The Smart School focuses on foundational education for young children with child-friendly learning spaces and early technology exposure.",
     historyTitle: "Early Learning Foundation",
@@ -327,6 +407,7 @@ export const ownSchools: School[] = [
     name: "Al-Kitab Primary School, Bahawalpur",
     location: "Chani Goth, Bahawalpur",
     shortDescription: "A growing rural primary school started with 15 students.",
+    cardImage: "/img/HEADERBG/05-alkitab-chani-goth.png",
     description:
       "Established in 2021, this school expanded from a small start into a meaningful education center for children in nearby villages.",
     historyTitle: "Green Growth Initiative",
@@ -355,6 +436,7 @@ export const ownSchools: School[] = [
     name: "Al-Kitab School of Technology",
     location: "Abid Town, Sheikhupura",
     shortDescription: "Technology-oriented campus serving underserved children.",
+    cardImage: "/img/campaigns-opt/img_programs_computerlab.webp",
     description:
       "This campus offers education support with a mixed sustainability model where most students study free through NGO support while some families contribute minimal fees.",
     historyTitle: "Access to Quality Learning",
@@ -382,6 +464,7 @@ export const ownSchools: School[] = [
     name: "Al-Kitab Education System Campus 9",
     location: "Newly Added Campus",
     shortDescription: "Ninth own-school entry reserved for latest campus profile.",
+    cardImage: "/img/campaigns-opt/img_causes_alkitab2.webp",
     description:
       "This slot represents your 9th own school in Al-Kitab Education System. You can update this page with final name, location, and profile details anytime.",
     historyTitle: "Planned Campus Profile",
@@ -412,6 +495,7 @@ export const adoptedSchools: School[] = [
     name: "Benazir Public Girls Higher Secondary School",
     location: "Nawabshah",
     shortDescription: "A large girls campus revitalized through full adoption support.",
+    cardImage: "/img/HEADERBG/02-benazir-public-school.png",
     description:
       "Helpline Welfare Trust adopted and strengthened this school to ensure girls continue receiving quality education in a safe and empowering environment.",
     historyTitle: "From Struggle to Excellence",
@@ -439,6 +523,7 @@ export const adoptedSchools: School[] = [
     name: "Govt GPS Misri Bheel School",
     location: "Tando Allah Yar",
     shortDescription: "Revived from closure into an active learning center.",
+    cardImage: "/img/causes/bheel1.jpg",
     description:
       "Once abandoned, this school has been restored through adoption support and community mobilization.",
     historyTitle: "School Revival Story",
@@ -466,6 +551,7 @@ export const adoptedSchools: School[] = [
     name: "Govt GPS Nabi Baksh Gabool School",
     location: "Tando Allah Yar",
     shortDescription: "Rural transformation through educational adoption and support.",
+    cardImage: "/img/campaigns-opt/img_causes_school-1-scaled.webp",
     description:
       "This school has improved through infrastructure and education support, becoming a reliable learning center for local children.",
     historyTitle: "Transformation in a Rural Setting",

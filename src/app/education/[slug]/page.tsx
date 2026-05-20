@@ -1,6 +1,9 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import ImagePlaceholder from "@/components/ImagePlaceholder";
+import EventCoverImage from "@/components/EventCoverImage";
+import SchoolGalleryImage from "@/components/SchoolGalleryImage";
+import TopResultImage from "@/components/TopResultImage";
 import {
   adoptedSchools,
   allSchools,
@@ -25,8 +28,9 @@ export default async function SchoolDetailPage({ params }: SchoolPageProps) {
     notFound();
   }
 
-  const placeholderCount = Math.max(6, school.imageSlots);
-  const placeholders = Array.from({ length: placeholderCount }, (_, index) => index + 1);
+  const galleryCount = school.galleryImages?.length ?? Math.max(6, school.imageSlots);
+  const galleryItems = Array.from({ length: galleryCount }, (_, index) => index + 1);
+  const hasGalleryPhotos = Boolean(school.galleryImages?.length);
   const isOwnSchool = school.category === "Own School";
 
   const supportModel = isOwnSchool
@@ -152,6 +156,7 @@ export default async function SchoolDetailPage({ params }: SchoolPageProps) {
     school.annualEvents && school.annualEvents.length > 0 ? school.annualEvents : defaultAnnualEvents;
   const tenthResults = topResults.filter((result) => result.className === "10th");
   const ninthResults = topResults.filter((result) => result.className === "9th");
+  const hasTopResultPhotos = topResults.some((result) => result.image);
 
   return (
     <div className="bg-white pt-2 md:pt-4">
@@ -304,23 +309,27 @@ export default async function SchoolDetailPage({ params }: SchoolPageProps) {
               </span>
               <h2 className="mt-3 text-3xl font-bold text-teal-900 md:text-4xl">A Glimpse Inside</h2>
               <p className="mt-2 max-w-2xl text-gray-600">
-                Real images of {school.name} will appear here. These placeholders are ready for your upload.
+                {hasGalleryPhotos
+                  ? `Campus life, milestones, and moments from ${school.name}.`
+                  : `Real images of ${school.name} will appear here. These placeholders are ready for your upload.`}
               </p>
             </div>
-            <div className="rounded-full border border-teal-200 bg-teal-50 px-4 py-2 text-xs font-medium text-teal-700">
-              {placeholderCount} image slots ready
-            </div>
+            {!hasGalleryPhotos && (
+              <div className="rounded-full border border-teal-200 bg-teal-50 px-4 py-2 text-xs font-medium text-teal-700">
+                {galleryCount} image slots ready
+              </div>
+            )}
           </div>
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {placeholders.map((item) => (
+            {galleryItems.map((item) => (
               <div
                 key={item}
                 className="group overflow-hidden rounded-2xl border border-teal-100 bg-white transition hover:shadow-lg"
               >
-                <ImagePlaceholder
-                  label={`${school.name} - Image ${item}`}
-                  aspectRatio="video"
-                  className="w-full"
+                <SchoolGalleryImage
+                  schoolName={school.name}
+                  image={school.galleryImages?.[item - 1]}
+                  index={item}
                 />
                 <div className="p-4">
                   <p className="text-xs font-medium text-gray-500">Image {item}</p>
@@ -456,11 +465,7 @@ export default async function SchoolDetailPage({ params }: SchoolPageProps) {
                   className="overflow-hidden rounded-2xl border border-teal-100 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
                 >
                   <div className="relative">
-                    <ImagePlaceholder
-                      label={`${result.name} photo placeholder`}
-                      aspectRatio="square"
-                      className="w-full"
-                    />
+                    <TopResultImage name={result.name} image={result.image} />
                     <div className="absolute top-3 left-3 rounded-full bg-amber-400 px-3 py-1 text-xs font-bold text-teal-900 shadow">
                       {result.position ?? `Top ${idx + 1}`}
                     </div>
@@ -501,11 +506,7 @@ export default async function SchoolDetailPage({ params }: SchoolPageProps) {
                   className="overflow-hidden rounded-2xl border border-teal-100 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
                 >
                   <div className="relative">
-                    <ImagePlaceholder
-                      label={`${result.name} photo placeholder`}
-                      aspectRatio="square"
-                      className="w-full"
-                    />
+                    <TopResultImage name={result.name} image={result.image} />
                     <div className="absolute top-3 left-3 rounded-full bg-amber-400 px-3 py-1 text-xs font-bold text-teal-900 shadow">
                       {result.position ?? `Top ${idx + 1}`}
                     </div>
@@ -531,9 +532,11 @@ export default async function SchoolDetailPage({ params }: SchoolPageProps) {
             </div>
           </div>
 
-          <p className="mt-10 text-center text-xs italic text-gray-500">
-            Replace student names, marks, and photos with your real toppers data anytime.
-          </p>
+          {!hasTopResultPhotos && (
+            <p className="mt-10 text-center text-xs italic text-gray-500">
+              Replace student names, marks, and photos with your real toppers data anytime.
+            </p>
+          )}
         </div>
       </section>
 
@@ -560,11 +563,7 @@ export default async function SchoolDetailPage({ params }: SchoolPageProps) {
                 className="group overflow-hidden rounded-2xl border border-teal-100 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
               >
                 <div className="relative">
-                  <ImagePlaceholder
-                    label={`${event.name} - image placeholder`}
-                    aspectRatio="video"
-                    className="w-full"
-                  />
+                  <EventCoverImage name={event.name} image={event.image} />
                   <div className="absolute top-3 left-3 rounded-full bg-teal-700 px-3 py-1 text-xs font-semibold text-white shadow">
                     {event.tag ?? `Event ${idx + 1}`}
                   </div>

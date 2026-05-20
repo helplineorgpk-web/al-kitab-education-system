@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -16,8 +17,16 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-teal-100 shadow-sm">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
-        <Link href="/" className="flex items-center gap-2">
-          <span className="text-xl font-bold text-teal-700">Al-Kitab Education System</span>
+        <Link href="/" className="flex shrink-0 items-center py-0.5" aria-label="Al-Kitab Education System home">
+          <Image
+            src="/ALKitabLogoEnglish.png"
+            alt="Al-Kitab Education System"
+            width={260}
+            height={66}
+            className="h-10 w-auto sm:h-12"
+            priority
+            sizes="(max-width: 640px) 200px, 260px"
+          />
         </Link>
 
         <nav className="hidden lg:flex items-center gap-1">

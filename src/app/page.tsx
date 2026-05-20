@@ -1,9 +1,13 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import ImagePlaceholder from "@/components/ImagePlaceholder";
-import { adoptedSchools, ownSchools, schoolStats } from "@/data/schools";
+import HeroBackgroundSlider from "@/components/HeroBackgroundSlider";
+import EventCoverImage from "@/components/EventCoverImage";
+import SchoolCoverImage from "@/components/SchoolCoverImage";
+import { adoptedSchools, homepageAnnualEvents, ownSchools, schoolStats } from "@/data/schools";
 
 const featuredOwn = ownSchools.slice(0, 3);
 const featuredAdopted = adoptedSchools.slice(0, 3);
@@ -40,15 +44,6 @@ const focusPillars = [
     title: "Long-Term Growth",
     description: "Children supported from primary through higher secondary - real, life-changing progression.",
   },
-];
-
-const annualEvents = [
-  { name: "Annual Sports Gala", tag: "Sports", description: "Athletics, races, and team games building school spirit." },
-  { name: "Parent Teacher Meeting", tag: "Academic", description: "Open dialogue between parents and teachers on student progress." },
-  { name: "Teacher Day", tag: "Celebration", description: "A heartwarming tribute to the teachers who shape futures." },
-  { name: "Watermelon Day", tag: "Fun Day", description: "Joyful summer celebration with students and teachers together." },
-  { name: "Mango Day", tag: "Fun Day", description: "A favorite seasonal day full of mangoes, smiles, and memories." },
-  { name: "Test Reports & Result Day", tag: "Academic", description: "Detailed academic feedback and progress sharing with families." },
 ];
 
 const journeySteps = [
@@ -115,18 +110,20 @@ export default function Home() {
   return (
     <div>
       {/* HERO */}
-      <section className="relative min-h-[88vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-teal-800 via-teal-700 to-teal-900">
-        <div className="absolute inset-0 opacity-15">
-          <ImagePlaceholder label="Hero: Children studying / classroom" className="w-full h-full" aspectRatio="wide" />
+      <section className="relative min-h-[88vh] flex items-center justify-center overflow-hidden">
+        <div className="absolute inset-0">
+          <HeroBackgroundSlider />
+          <div
+            className="pointer-events-none absolute inset-0 z-[3] bg-gradient-to-b from-black/25 via-transparent to-black/35"
+            aria-hidden
+          />
         </div>
-        <div className="absolute -top-32 -right-32 h-96 w-96 rounded-full bg-amber-300/20 blur-3xl" />
-        <div className="absolute -bottom-32 -left-32 h-96 w-96 rounded-full bg-teal-300/20 blur-3xl" />
 
-        <div className="relative z-10 mx-auto max-w-5xl px-4 py-20 text-center">
+        <div className="relative z-20 mx-auto max-w-5xl px-4 py-20 text-center">
           <motion.span
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="inline-block rounded-full bg-white/15 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-amber-200 backdrop-blur"
+            className="inline-block rounded-full bg-white/15 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-amber-300 backdrop-blur-sm ring-1 ring-white/30 [text-shadow:0_1px_2px_rgba(0,0,0,0.8)]"
           >
             A project of Helpline Welfare Trust
           </motion.span>
@@ -134,7 +131,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="mt-5 text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl"
+            className="mt-5 text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl [text-shadow:0_2px_4px_rgba(0,0,0,0.85),0_8px_32px_rgba(0,0,0,0.65)]"
           >
             Education for Every Child
           </motion.h1>
@@ -142,7 +139,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="mx-auto mt-6 max-w-2xl text-lg text-teal-100 sm:text-xl"
+            className="mx-auto mt-6 max-w-2xl text-lg text-white/95 sm:text-xl [text-shadow:0_1px_3px_rgba(0,0,0,0.9),0_4px_20px_rgba(0,0,0,0.55)]"
           >
             Al-Kitab Education System is reviving education in underprivileged communities of Pakistan with{" "}
             {schoolStats.own} own schools and {schoolStats.adopted} adopted schools.
@@ -155,19 +152,19 @@ export default function Home() {
           >
             <Link
               href="/education"
-              className="rounded-full bg-amber-400 px-8 py-3 text-base font-semibold text-teal-900 shadow-lg hover:bg-amber-300 transition-colors"
+              className="rounded-full bg-amber-400 px-8 py-3 text-base font-semibold text-teal-900 shadow-lg ring-1 ring-black/10 hover:bg-amber-300 transition-colors"
             >
               View Education Projects
             </Link>
             <Link
               href="/education#schools"
-              className="rounded-full border-2 border-white px-8 py-3 text-base font-semibold text-white hover:bg-white/10 transition-colors"
+              className="rounded-full border-2 border-white bg-white/15 px-8 py-3 text-base font-semibold text-white shadow-lg backdrop-blur-sm hover:bg-white/25 transition-colors [text-shadow:0_1px_2px_rgba(0,0,0,0.75)]"
             >
               Our Schools
             </Link>
             <Link
               href="/contact"
-              className="rounded-full border-2 border-amber-300 px-8 py-3 text-base font-semibold text-amber-200 hover:bg-amber-300/20 transition-colors"
+              className="rounded-full border-2 border-amber-300 bg-white/15 px-8 py-3 text-base font-semibold text-amber-200 shadow-lg backdrop-blur-sm hover:bg-white/25 transition-colors [text-shadow:0_1px_2px_rgba(0,0,0,0.85)]"
             >
               Support Education
             </Link>
@@ -182,10 +179,14 @@ export default function Home() {
             {heroHighlights.map((item) => (
               <div
                 key={item.label}
-                className="rounded-2xl border border-white/15 bg-white/10 px-4 py-5 text-center backdrop-blur"
+                className="rounded-2xl border border-white/25 bg-white/15 px-4 py-5 text-center shadow-lg backdrop-blur-md"
               >
-                <div className="text-2xl font-bold text-amber-300">{item.value}</div>
-                <div className="mt-1 text-xs uppercase tracking-wider text-teal-100">{item.label}</div>
+                <div className="text-2xl font-bold text-amber-300 [text-shadow:0_1px_3px_rgba(0,0,0,0.9)]">
+                  {item.value}
+                </div>
+                <div className="mt-1 text-xs uppercase tracking-wider text-white/90 [text-shadow:0_1px_2px_rgba(0,0,0,0.85)]">
+                  {item.label}
+                </div>
               </div>
             ))}
           </motion.div>
@@ -227,11 +228,15 @@ export default function Home() {
             </div>
           </div>
           <div className="relative">
-            <ImagePlaceholder
-              label="Children at Al-Kitab classroom"
-              aspectRatio="square"
-              className="w-full rounded-3xl shadow-lg"
-            />
+            <div className="relative aspect-square w-full overflow-hidden rounded-3xl shadow-lg">
+              <Image
+                src="/img/causes/cause17.jpg"
+                alt="Children at an Al-Kitab school"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
+            </div>
             <div className="absolute -bottom-6 -left-6 hidden rounded-2xl border border-teal-100 bg-white p-5 shadow-xl md:block">
               <p className="text-3xl font-bold text-teal-700">{schoolStats.total}</p>
               <p className="text-xs uppercase tracking-wide text-gray-500">Schools in Network</p>
@@ -334,7 +339,7 @@ export default function Home() {
                 href={`/education/${school.slug}`}
                 className="group block overflow-hidden rounded-2xl border border-teal-100 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
               >
-                <ImagePlaceholder label={`${school.name} preview`} aspectRatio="video" className="w-full" />
+                <SchoolCoverImage school={school} placeholderLabel={`${school.name} preview`} />
                 <div className="p-5">
                   <span className="inline-block rounded-full bg-teal-50 px-2 py-0.5 text-xs font-medium text-teal-700">
                     {school.category}
@@ -382,7 +387,7 @@ export default function Home() {
                 href={`/education/${school.slug}`}
                 className="group block overflow-hidden rounded-2xl border border-teal-100 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
               >
-                <ImagePlaceholder label={`${school.name} preview`} aspectRatio="video" className="w-full" />
+                <SchoolCoverImage school={school} placeholderLabel={`${school.name} preview`} />
                 <div className="p-5">
                   <span className="inline-block rounded-full bg-teal-50 px-2 py-0.5 text-xs font-medium text-teal-700">
                     {school.category}
@@ -448,7 +453,7 @@ export default function Home() {
             </p>
           </div>
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {annualEvents.map((event) => (
+            {homepageAnnualEvents.map((event) => (
               <motion.div
                 key={event.name}
                 initial={{ opacity: 0, y: 20 }}
@@ -457,7 +462,7 @@ export default function Home() {
                 className="overflow-hidden rounded-2xl border border-teal-100 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
               >
                 <div className="relative">
-                  <ImagePlaceholder label={`${event.name} - image placeholder`} aspectRatio="video" className="w-full" />
+                  <EventCoverImage name={event.name} image={event.image} />
                   <div className="absolute top-3 left-3 rounded-full bg-teal-700 px-3 py-1 text-xs font-semibold text-white shadow">
                     {event.tag}
                   </div>
