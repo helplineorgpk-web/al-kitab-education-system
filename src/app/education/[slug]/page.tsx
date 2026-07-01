@@ -1,9 +1,12 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import ImagePlaceholder from "@/components/ImagePlaceholder";
 import EventCoverImage from "@/components/EventCoverImage";
 import SchoolGalleryImage from "@/components/SchoolGalleryImage";
 import TopResultImage from "@/components/TopResultImage";
+import { BreadcrumbJsonLd, JsonLd } from "@/components/JsonLd";
+import { absoluteUrl, siteConfig } from "@/lib/seo";
 import {
   adoptedSchools,
   allSchools,
@@ -18,6 +21,52 @@ interface SchoolPageProps {
 
 export function generateStaticParams() {
   return allSchools.map((school) => ({ slug: school.slug }));
+}
+
+export async function generateMetadata({ params }: SchoolPageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const school = allSchools.find((item) => item.slug === slug);
+
+  if (!school) {
+    return {
+      title: "School Not Found",
+      robots: { index: false, follow: true },
+    };
+  }
+
+  const path = `/education/${school.slug}`;
+  const canonical = absoluteUrl(path);
+  const image = absoluteUrl(school.cardImage ?? school.galleryImages?.[0] ?? siteConfig.ogImage);
+  const description = `${school.name} in ${school.location} — ${school.shortDescription} Part of ${siteConfig.name} under ${siteConfig.parentName}.`;
+
+  return {
+    title: `${school.name} — ${school.location}`,
+    description,
+    keywords: [
+      school.name,
+      `${school.name} ${school.location}`,
+      school.category,
+      "Al-Kitab Education System",
+      "Helpline Welfare Trust",
+      "school in Pakistan",
+    ],
+    alternates: { canonical },
+    openGraph: {
+      type: "article",
+      siteName: siteConfig.name,
+      locale: siteConfig.locale,
+      url: canonical,
+      title: `${school.name} — ${school.location}`,
+      description,
+      images: [{ url: image, alt: school.name }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${school.name} — ${school.location}`,
+      description,
+      images: [image],
+    },
+  };
 }
 
 export default async function SchoolDetailPage({ params }: SchoolPageProps) {
@@ -158,8 +207,37 @@ export default async function SchoolDetailPage({ params }: SchoolPageProps) {
   const ninthResults = topResults.filter((result) => result.className === "9th");
   const hasTopResultPhotos = topResults.some((result) => result.image);
 
+  const schoolImage = absoluteUrl(school.cardImage ?? school.galleryImages?.[0] ?? siteConfig.ogImage);
+  const schoolJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "School",
+    name: school.name,
+    description: school.description,
+    url: absoluteUrl(`/education/${school.slug}`),
+    image: schoolImage,
+    ...(school.founded ? { foundingDate: school.founded } : {}),
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: school.location,
+      addressCountry: "PK",
+    },
+    parentOrganization: {
+      "@type": "EducationalOrganization",
+      name: siteConfig.name,
+      url: siteConfig.url,
+    },
+  };
+
   return (
     <div className="bg-white pt-2 md:pt-4">
+      <JsonLd data={schoolJsonLd} />
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", path: "/" },
+          { name: "Education", path: "/education" },
+          { name: school.name, path: `/education/${school.slug}` },
+        ]}
+      />
       {/* HERO */}
       <section className="relative overflow-hidden bg-gradient-to-br from-teal-900 via-teal-800 to-teal-700 px-4 pt-16 pb-32 text-white md:pt-20 md:pb-40">
         <div className="absolute inset-0 opacity-10">
