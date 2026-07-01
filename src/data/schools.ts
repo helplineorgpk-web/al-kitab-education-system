@@ -579,6 +579,7 @@ export const adoptedSchools: School[] = [
     name: "Sindh Govt Primary School (Nimro Sharif)",
     location: "Mirpurkhas",
     shortDescription: "Improved attendance and learning through school renewal.",
+    cardImage: "/img/causes/nimro.jpg",
     description:
       "The school was revitalized with repairs, resources, and re-enrollment drives to restore regular classes and student retention.",
     historyTitle: "From Neglect to Stability",
@@ -606,6 +607,7 @@ export const adoptedSchools: School[] = [
     name: "GPS Sardar Khan Laghari School",
     location: "Mirpurkhas",
     shortDescription: "Comprehensive renewal of a previously under-resourced campus.",
+    cardImage: "/img/causes/laghari1.jpg",
     description:
       "Through adoption support, this school now provides stable learning conditions with stronger facilities and teaching support.",
     historyTitle: "A Renewed Campus",
@@ -633,6 +635,7 @@ export const adoptedSchools: School[] = [
     name: "GPS Roru Goth School",
     location: "Mirpurkhas",
     shortDescription: "Repaired and reactivated for consistent primary education.",
+    cardImage: "/img/campaigns-opt/img_causes_roruschool.webp",
     description:
       "School infrastructure, WASH access, teachers, and materials were improved to restore quality education delivery.",
     historyTitle: "Adoption-Led Reactivation",
@@ -660,6 +663,7 @@ export const adoptedSchools: School[] = [
     name: "Govt GPS Bagliar Mithi School",
     location: "Tharparkar",
     shortDescription: "From closure to a functioning and hopeful school campus.",
+    cardImage: "/img/causes/gpsbaglair1.jpg",
     description:
       "This school was brought back to life through restoration and adoption support, creating a safe learning environment for children.",
     historyTitle: "From Closed to Functional",
@@ -687,6 +691,7 @@ export const adoptedSchools: School[] = [
     name: "Govt GPS Kakrario Saman Mian School",
     location: "Tharparkar",
     shortDescription: "Teacher and student support for sustained school operations.",
+    cardImage: "/img/causes/kakrio.jpg",
     description:
       "Helpline supports school operations, teacher salaries, and educational resources to improve outcomes for low-income students.",
     historyTitle: "Support Where It Matters Most",
@@ -714,6 +719,7 @@ export const adoptedSchools: School[] = [
     name: "Govt GPS Misali Goth School",
     location: "Tharparkar",
     shortDescription: "Strengthened through operational and staffing support.",
+    cardImage: "/img/causes/misaligoth.jpg",
     description:
       "The school benefits from stable staff support and learning resources, helping maintain quality classroom delivery.",
     historyTitle: "Committed Community Support",
@@ -741,6 +747,7 @@ export const adoptedSchools: School[] = [
     name: "Govt GPS Katho Samma School",
     location: "Tharparkar",
     shortDescription: "A transformed campus through adoption partnership.",
+    cardImage: "/img/causes/katho1.jpg",
     description:
       "Teacher and resource support improved stability and created a stronger learning environment for children from low-income families.",
     historyTitle: "Partnership for Transformation",
@@ -768,6 +775,7 @@ export const adoptedSchools: School[] = [
     name: "GPS Ando Muhajir School",
     location: "Tando Allah Yar",
     shortDescription: "Financial and academic support to uplift a public school.",
+    cardImage: "/img/causes/andumahajir.jpg",
     description:
       "Adoption support for teacher salaries and learning resources has helped improve access and quality for local students.",
     historyTitle: "Public School Uplift",
@@ -795,6 +803,7 @@ export const adoptedSchools: School[] = [
     name: "Sindh Govt Primary School (Boys) - Sammu Goth",
     location: "Karachi",
     shortDescription: "Adopted school profile for Karachi region support.",
+    cardImage: "/img/causes/tandusindh1.jpg",
     description:
       "This adopted campus receives support to improve teacher availability, learning resources, and student participation.",
     historyTitle: "Karachi Adoption Expansion",
@@ -822,6 +831,7 @@ export const adoptedSchools: School[] = [
     name: "Adopted School 13",
     location: "To Be Updated",
     shortDescription: "Reserved slot for your latest adopted school profile.",
+    cardImage: "/img/campaigns-opt/img_causes_school-1-scaled.webp",
     description:
       "This page is reserved for the 13th adopted school under Al-Kitab Education System. You can update full details and images when finalized.",
     historyTitle: "Profile Placeholder",

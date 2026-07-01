@@ -138,22 +138,31 @@ export default function EducationPage() {
           >
             These schools are adopted and supported by Helpline Welfare Trust to restore quality education where it was previously neglected.
           </motion.p>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 mb-10">
+          <div className="grid gap-8 md:grid-cols-3 mb-10">
             {adoptedSchools.map((school, i) => (
               <motion.div
                 key={school.slug}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: Math.min(i * 0.03, 0.25) }}
-                className="rounded-xl border border-teal-100 bg-gray-50/50 p-4"
+                transition={{ delay: Math.min(i * 0.05, 0.3) }}
+                className="rounded-2xl overflow-hidden border border-teal-100 bg-white shadow-sm"
               >
-                <h4 className="font-semibold text-teal-800 text-sm">{school.name}</h4>
-                <p className="mt-1 text-xs text-gray-600">{school.location}</p>
-                <p className="mt-2 text-xs text-gray-700">{school.shortDescription}</p>
-                <Link href={`/education/${school.slug}`} className="mt-2 inline-block text-xs text-teal-600 hover:text-teal-700 font-medium">
-                  View School Page →
-                </Link>
+                <SchoolCoverImage school={school} placeholderLabel={`${school.name} image placeholder`} />
+                <div className="p-6">
+                  <span className="inline-block rounded-full bg-amber-100 px-3 py-1 text-xs font-medium text-amber-800">
+                    Adopted School
+                  </span>
+                  <h3 className="mt-3 text-lg font-semibold text-teal-800">{school.name}</h3>
+                  <p className="mt-1 text-sm text-teal-600">{school.location}</p>
+                  <p className="mt-4 text-gray-600 text-sm leading-relaxed">{school.shortDescription}</p>
+                  <Link
+                    href={`/education/${school.slug}`}
+                    className="mt-4 inline-block text-teal-600 font-semibold hover:text-teal-700 text-sm"
+                  >
+                    View School Page →
+                  </Link>
+                </div>
               </motion.div>
             ))}
           </div>
