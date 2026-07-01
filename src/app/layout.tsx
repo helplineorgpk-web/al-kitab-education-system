@@ -4,7 +4,14 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { OrganizationJsonLd } from "@/components/JsonLd";
-import { siteConfig } from "@/lib/seo";
+import { absoluteUrl, siteConfig } from "@/lib/seo";
+
+const shareImage = {
+  url: absoluteUrl(siteConfig.ogImage),
+  width: 1200,
+  height: 630,
+  alt: `${siteConfig.name} — ${siteConfig.tagline}`,
+};
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,6 +39,16 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/",
   },
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "32x32" },
+      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/ALKitabLogoEnglish.png", sizes: "512x512", type: "image/png" },
+    ],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
+    shortcut: "/favicon.ico",
+  },
   robots: {
     index: true,
     follow: true,
@@ -50,11 +67,13 @@ export const metadata: Metadata = {
     siteName: siteConfig.name,
     title: `${siteConfig.name} | ${siteConfig.tagline}`,
     description: siteConfig.description,
+    images: [shareImage],
   },
   twitter: {
     card: "summary_large_image",
     title: `${siteConfig.name} | ${siteConfig.tagline}`,
     description: siteConfig.description,
+    images: [shareImage.url],
   },
   formatDetection: {
     email: false,

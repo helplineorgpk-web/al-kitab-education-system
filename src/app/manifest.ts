@@ -12,8 +12,18 @@ export default function manifest(): MetadataRoute.Manifest {
     theme_color: "#0f766e",
     icons: [
       {
-        src: siteConfig.logo,
-        sizes: "any",
+        src: "/favicon-32x32.png",
+        sizes: "32x32",
+        type: "image/png",
+      },
+      {
+        src: "/apple-touch-icon.png",
+        sizes: "180x180",
+        type: "image/png",
+      },
+      {
+        src: "/ALKitabLogoEnglish.png",
+        sizes: "512x512",
         type: "image/png",
       },
     ],

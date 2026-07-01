@@ -4,22 +4,31 @@ import type { Metadata } from "next";
  * Central site configuration used across metadata, sitemap, robots,
  * structured data (JSON-LD), Open Graph and Twitter cards.
  *
- * IMPORTANT: update `url` to your real production domain (or set the
- * NEXT_PUBLIC_SITE_URL environment variable) so canonical URLs,
- * sitemap entries and social share links resolve correctly.
+ * Set NEXT_PUBLIC_SITE_URL to your live domain before deploying.
  */
+function getSiteUrl(): string {
+  if (process.env.NEXT_PUBLIC_SITE_URL) {
+    return process.env.NEXT_PUBLIC_SITE_URL.replace(/\/$/, "");
+  }
+  if (process.env.VERCEL_URL) {
+    return `https://${process.env.VERCEL_URL}`;
+  }
+  return "http://localhost:3000";
+}
+
 export const siteConfig = {
   name: "Al-Kitab Education System",
   shortName: "Al-Kitab",
   legalName: "Al-Kitab Education System (Helpline Welfare Trust)",
   parentName: "Helpline Welfare Trust",
-  url: (process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.alkitabeducationsystem.org").replace(/\/$/, ""),
+  url: getSiteUrl(),
   locale: "en_US",
   description:
     "Al-Kitab Education System, a project of Helpline Welfare Trust, provides free quality education to underprivileged children in Pakistan through its own campuses and adopted government schools.",
   tagline: "Education for Every Child",
   logo: "/ALKitabLogoEnglish.png",
-  ogImage: "/ALKitabLogoEnglish.png",
+  /** Static share card — public/og-image.png (1200×630) */
+  ogImage: "/og-image.png",
   keywords: [
     "Al-Kitab Education System",
     "Al Kitab school",
@@ -63,8 +72,8 @@ interface PageMetaInput {
   path?: string;
   keywords?: string[];
   /**
-   * Optional custom share image. When omitted, the site-wide branded
-   * Open Graph card (src/app/opengraph-image.tsx) is used automatically.
+   * Optional custom share image. Defaults to the static branded card at
+   * public/og-image.png (1200×630).
    */
   image?: string;
   /** Set true for pages that should not be indexed (e.g. admin). */
@@ -85,7 +94,8 @@ export function pageMetadata({
   noindex = false,
 }: PageMetaInput): Metadata {
   const canonical = absoluteUrl(path);
-  const ogImages = image ? [{ url: absoluteUrl(image), alt: siteConfig.name }] : undefined;
+  const shareImage = image ?? siteConfig.ogImage;
+  const ogImageUrl = absoluteUrl(shareImage);
 
   return {
     title,
@@ -112,13 +122,20 @@ export function pageMetadata({
       url: canonical,
       title,
       description,
-      ...(ogImages ? { images: ogImages } : {}),
+      images: [
+        {
+          url: ogImageUrl,
+          width: 1200,
+          height: 630,
+          alt: siteConfig.name,
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
-      ...(image ? { images: [absoluteUrl(image)] } : {}),
+      images: [ogImageUrl],
     },
   };
 }
